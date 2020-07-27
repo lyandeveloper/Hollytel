@@ -1,11 +1,6 @@
-import express, {
-  Request,
-  Response,
-  ErrorRequestHandler,
-  NextFunction,
-  request,
-  response,
-} from 'express';
+import 'dotenv/config';
+import express, { Request, Response, ErrorRequestHandler } from 'express';
+import 'reflect-metadata';
 import routes from './routes';
 
 class App {
@@ -19,28 +14,29 @@ class App {
 
   private middlewares(): void {
     this.server.use(express.json());
-    this.server.use(
-      (
-        err: ErrorRequestHandler,
-        req: Request,
-        res: Response,
-        next: Function
-      ) => {
-        if (req.xhr) {
-          res.status(500).send({ error: 'Something went wrong...' });
-        } else {
-          next(err);
-        }
-      }
-    );
+    this.server.use(this.ClientErrorHandler);
+  }
+
+  private ClientErrorHandler(
+    err: ErrorRequestHandler,
+    req: Request,
+    res: Response,
+    next: Function
+  ) {
+    if (req.xhr) {
+      res.status(500).send({ error: 'Something went wrong...' });
+    } else {
+      next(err);
+    }
+  }
+
+  private NotFoundError(req: Request, res: Response) {
+    res.status(404).send({ error: 'Not found' });
   }
 
   private routes(): void {
     this.server.use(routes);
-
-    this.server.use((req: Request, res: Response, next: NextFunction) => {
-      res.status(404).send({ error: 'Not found' });
-    });
+    this.server.use(this.NotFoundError);
   }
 }
 
