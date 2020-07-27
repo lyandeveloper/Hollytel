@@ -21,6 +21,9 @@ export default class User {
   born!: string;
 
   @Column()
+  city!: string;
+
+  @Column()
   address!: string;
 
   @Column()
