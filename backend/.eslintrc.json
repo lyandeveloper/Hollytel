@@ -14,6 +14,7 @@
     "prettier/prettier": "error",
     "no-unused-vars": "warn",
     "import/no-unresolved": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "class-methods-use-this": "off"
   }
 }

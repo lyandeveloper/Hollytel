@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express, { Request, Response, ErrorRequestHandler } from 'express';
 import 'reflect-metadata';
 import routes from './routes';
+import './database';
 
 class App {
   public server: express.Application;
