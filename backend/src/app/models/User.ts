@@ -31,4 +31,7 @@ export default class User {
 
   @Column()
   country!: string;
+
+  @Column()
+  provider!: boolean;
 }
