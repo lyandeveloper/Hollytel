@@ -72,6 +72,47 @@ class UserController {
 
     return res.json(user);
   }
+
+  async update(req: Request, res: Response) {
+    const {
+      name,
+      email,
+      password,
+      avatar,
+      born,
+      city,
+      address,
+      phone,
+      country,
+      provider,
+    } = req.body;
+    const userRepository = getRepository(User);
+    await userRepository.update(req.params.userId, {
+      name,
+      email,
+      password,
+      avatar,
+      born,
+      city,
+      address,
+      phone,
+      country,
+      provider,
+    });
+
+    return res.json({
+      name,
+      email,
+      password,
+      avatar,
+      born,
+      city,
+      address,
+      phone,
+      country,
+      provider,
+    });
+  }
 }
 
 export default new UserController();
