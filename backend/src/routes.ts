@@ -10,5 +10,7 @@ routes.put('/users/:userId', UserController.update);
 
 routes.post('/hotels', HotelController.create);
 routes.get('/hotels', HotelController.read);
+routes.get('/hotels/:hotelId', HotelController.index);
 routes.put('/hotels/:hotelId', HotelController.update);
+routes.delete('/hotels/:hotelId', HotelController.delete);
 export default routes;
