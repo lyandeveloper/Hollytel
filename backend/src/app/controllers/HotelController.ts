@@ -38,6 +38,20 @@ class HotelController {
       guests,
     });
   }
+
+  async read(req: Request, res: Response) {
+    const hotelRepository = getRepository(Hotel);
+    const hotels = await hotelRepository.find();
+
+    return res.json(hotels);
+  }
+
+  async update(req: Request, res: Response) {
+    const hotelRepository = getRepository(Hotel);
+    await hotelRepository.update(req.params.hotelId, req.body);
+
+    return res.json(req.body);
+  }
 }
 
 export default new HotelController();
