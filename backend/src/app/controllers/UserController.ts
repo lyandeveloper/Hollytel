@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import { getConnection, getManager, getRepository } from 'typeorm';
+import { getConnection, getRepository } from 'typeorm';
 import User from '../models/User';
+import HandlePassword from '../helpers/HandlePassword';
 
 class UserController {
   async create(req: Request, res: Response) {
@@ -17,6 +18,9 @@ class UserController {
       provider,
     } = req.body;
 
+    const handlePassword = new HandlePassword();
+    const passwordHash = await handlePassword.hashPassword(password, 8);
+
     await getConnection()
       .createQueryBuilder()
       .insert()
@@ -24,7 +28,7 @@ class UserController {
       .values({
         name,
         email,
-        password,
+        password: passwordHash,
         avatar,
         born,
         city,
@@ -38,7 +42,7 @@ class UserController {
     return res.json({
       name,
       email,
-      password,
+      passwordHash,
       avatar,
       born,
       address,
@@ -50,6 +54,7 @@ class UserController {
 
   async read(req: Request, res: Response) {
     const userRepository = getRepository(User);
+
     const user = await userRepository.find({
       select: [
         'id',
