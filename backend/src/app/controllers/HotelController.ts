@@ -5,38 +5,10 @@ import Hotel from '../models/Hotel';
 class HotelController {
   async create(req: Request, res: Response) {
     const hotelRepository = getRepository(Hotel);
-    const {
-      name,
-      banner,
-      description,
-      city,
-      country,
-      address,
-      rooms,
-      guests,
-    } = req.body;
+    const hotels = req.body;
+    await hotelRepository.insert(hotels);
 
-    await hotelRepository.insert({
-      name,
-      banner,
-      description,
-      city,
-      country,
-      address,
-      rooms,
-      guests,
-    });
-
-    return res.json({
-      name,
-      banner,
-      description,
-      city,
-      country,
-      address,
-      rooms,
-      guests,
-    });
+    return res.json(hotels);
   }
 
   async read(req: Request, res: Response) {
@@ -48,9 +20,10 @@ class HotelController {
 
   async update(req: Request, res: Response) {
     const hotelRepository = getRepository(Hotel);
-    await hotelRepository.update(req.params.hotelId, req.body);
+    const hotels = req.body;
+    await hotelRepository.update(req.params.hotelId, hotels);
 
-    return res.json(req.body);
+    return res.json(hotels);
   }
 }
 
