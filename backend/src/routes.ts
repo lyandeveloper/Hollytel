@@ -5,12 +5,12 @@ import HotelController from './app/controllers/HotelController';
 const routes = Router();
 
 routes.post('/users', UserController.create);
-routes.get('/users', UserController.read);
-routes.put('/users/:userId', UserController.update);
+routes.get('/users/list', UserController.read);
+routes.put('/users/update/:userId', UserController.update);
 
-routes.post('/hotels', HotelController.create);
-routes.get('/hotels', HotelController.read);
-routes.get('/hotels/:hotelId', HotelController.index);
-routes.put('/hotels/:hotelId', HotelController.update);
-routes.delete('/hotels/:hotelId', HotelController.delete);
+routes.post('/hotels/register', HotelController.create);
+routes.get('/hotels/list', HotelController.read);
+routes.get('/hotels/details/:hotelId', HotelController.index);
+routes.put('/hotels/update/:hotelId', HotelController.update);
+routes.delete('/hotels/delete/:hotelId', HotelController.delete);
 export default routes;
