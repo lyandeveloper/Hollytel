@@ -4,6 +4,8 @@ import {
   PrimaryGeneratedColumn,
   OneToOne,
   JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import User from './User';
 import Hotel from './Hotel';
@@ -26,4 +28,10 @@ export default class Booking {
 
   @Column()
   guests!: number;
+
+  @CreateDateColumn({ select: false })
+  created_at!: Date;
+
+  @UpdateDateColumn({ select: false })
+  updated_at!: Date;
 }

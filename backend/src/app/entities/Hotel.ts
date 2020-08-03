@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 import Banners from './Banners';
 
 @Entity()
@@ -29,4 +36,10 @@ export default class Hotel {
 
   @Column()
   guests!: number;
+
+  @CreateDateColumn({ select: false })
+  created_at!: Date;
+
+  @UpdateDateColumn({ select: false })
+  updated_at!: Date;
 }
