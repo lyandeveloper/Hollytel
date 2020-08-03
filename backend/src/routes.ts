@@ -17,4 +17,5 @@ routes.delete('/hotels/delete/:hotelId', HotelController.delete);
 
 routes.post('/hotels/booking/:userId/:hotelId', BookingController.create);
 routes.get('/mybookings/:userId', BookingController.listBookings);
+routes.put('/mybookings/:bookingId', BookingController.update);
 export default routes;

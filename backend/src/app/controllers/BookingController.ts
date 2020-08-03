@@ -43,6 +43,21 @@ class BookingController {
 
     return res.json(bookings);
   }
+
+  async update(req: Request, res: Response) {
+    const bookingRepository = getRepository(Booking);
+    const { bookingId } = req.params;
+    const { rooms, guests, check_in, check_out } = req.body;
+
+    await bookingRepository.update(bookingId, {
+      rooms,
+      guests,
+      check_in,
+      check_out,
+    });
+
+    return res.json({ rooms, guests, check_in, check_out });
+  }
 }
 
 export default new BookingController();
