@@ -9,7 +9,7 @@ createConnection({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  entities: [__dirname, path.resolve('src', 'app', 'models', '*.ts')],
+  entities: [__dirname, path.resolve('src', 'app', 'entities', '*.ts')],
   synchronize: true,
 })
   .then((connection) => {
