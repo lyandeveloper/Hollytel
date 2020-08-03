@@ -20,5 +20,5 @@ routes.post('/hotels/booking/:userId/:hotelId', BookingController.create);
 routes.get('/mybookings/:userId', BookingController.listBookings);
 routes.put('/mybookings/:bookingId', BookingController.update);
 
-routes.get('/hotels/searching', SearchController.searchHotels);
+routes.post('/hotels/searching', SearchController.searchHotels);
 export default routes;

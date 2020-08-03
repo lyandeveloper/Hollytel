@@ -4,12 +4,17 @@ import Hotel from '../entities/Hotel';
 
 class SearchController {
   async searchHotels(req: Request, res: Response) {
-    const { location } = req.query;
+    const { city, country, rooms, guests } = req.body;
 
     const hotelRepository = getRepository(Hotel);
 
     const hotel = await hotelRepository.find({
-      location: Like(`%${location}%`),
+      where: {
+        city,
+        country,
+        rooms,
+        guests,
+      },
     });
 
     return res.json(hotel);
