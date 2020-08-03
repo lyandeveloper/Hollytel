@@ -29,6 +29,12 @@ export default class Booking {
   @Column()
   guests!: number;
 
+  @Column()
+  check_in!: string;
+
+  @Column()
+  check_out!: string;
+
   @CreateDateColumn({ select: false })
   created_at!: Date;
 

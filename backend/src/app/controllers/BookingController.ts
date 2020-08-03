@@ -5,7 +5,7 @@ import User from '../entities/User';
 
 class BookingController {
   async create(req: Request, res: Response) {
-    const { rooms, guests } = req.body;
+    const { rooms, guests, check_in, check_out } = req.body;
     const { userId, hotelId } = req.params;
 
     await getConnection()
@@ -17,6 +17,8 @@ class BookingController {
         hotel: () => hotelId,
         rooms,
         guests,
+        check_in,
+        check_out,
       })
       .execute();
 
