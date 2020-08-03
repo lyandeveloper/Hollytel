@@ -11,7 +11,7 @@ export default class User {
   @Column()
   email!: string;
 
-  @Column()
+  @Column({ select: false })
   password!: string;
 
   @Column({ nullable: true })
@@ -32,6 +32,6 @@ export default class User {
   @Column()
   country!: string;
 
-  @Column()
+  @Column({ select: false })
   provider!: boolean;
 }
