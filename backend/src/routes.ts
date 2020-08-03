@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import UserController from './app/controllers/UserController';
 import HotelController from './app/controllers/HotelController';
+import BookingController from './app/controllers/BookingController';
 
 const routes = Router();
 
@@ -13,4 +14,6 @@ routes.get('/hotels/list', HotelController.read);
 routes.get('/hotels/details/:hotelId', HotelController.index);
 routes.put('/hotels/update/:hotelId', HotelController.update);
 routes.delete('/hotels/delete/:hotelId', HotelController.delete);
+
+routes.post('/hotels/booking/:userId/:hotelId', BookingController.create);
 export default routes;

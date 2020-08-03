@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
-import Hotel from '../models/Hotel';
+import Hotel from '../entities/Hotel';
 
 class HotelController {
   async create(req: Request, res: Response) {

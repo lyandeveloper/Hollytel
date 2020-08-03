@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { getConnection, getRepository } from 'typeorm';
-import User from '../models/User';
+import User from '../entities/User';
 import HandlePassword from '../helpers/HandlePassword';
 
 class UserController {
