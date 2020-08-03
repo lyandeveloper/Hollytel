@@ -25,12 +25,15 @@ class BookingController {
 
   async listBookings(req: Request, res: Response) {
     const bookingRepository = getRepository(Booking);
+    const { userId } = req.params;
 
     const bookings = await bookingRepository.find({
+      where: {
+        user: userId,
+      },
       join: {
         alias: 'booking',
         leftJoinAndSelect: {
-          user: 'booking.user',
           hotel: 'booking.hotel',
         },
       },
