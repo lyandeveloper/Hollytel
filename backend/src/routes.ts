@@ -2,6 +2,7 @@ import { Router } from 'express';
 import UserController from './app/controllers/UserController';
 import HotelController from './app/controllers/HotelController';
 import BookingController from './app/controllers/BookingController';
+import SearchController from './app/controllers/SearchController';
 
 const routes = Router();
 
@@ -18,4 +19,6 @@ routes.delete('/hotels/delete/:hotelId', HotelController.delete);
 routes.post('/hotels/booking/:userId/:hotelId', BookingController.create);
 routes.get('/mybookings/:userId', BookingController.listBookings);
 routes.put('/mybookings/:bookingId', BookingController.update);
+
+routes.get('/hotels/searching', SearchController.searchHotels);
 export default routes;

@@ -32,6 +32,9 @@ export default class Hotel {
   address!: string;
 
   @Column()
+  location!: string;
+
+  @Column()
   rooms!: number;
 
   @Column()

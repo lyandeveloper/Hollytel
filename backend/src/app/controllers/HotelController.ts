@@ -5,10 +5,29 @@ import Hotel from '../entities/Hotel';
 class HotelController {
   async create(req: Request, res: Response) {
     const hotelRepository = getRepository(Hotel);
-    const hotels = req.body;
-    await hotelRepository.insert(hotels);
+    const {
+      name,
+      description,
+      location,
+      city,
+      address,
+      country,
+      rooms,
+      guests,
+      bannerId,
+    } = req.body;
+    await hotelRepository.insert({
+      name,
+      description,
+      city,
+      address,
+      country,
+      rooms,
+      guests,
+      location: `${city}, ${address}, ${country}`,
+    });
 
-    return res.json(hotels);
+    return res.json(req.body);
   }
 
   async read(req: Request, res: Response) {
