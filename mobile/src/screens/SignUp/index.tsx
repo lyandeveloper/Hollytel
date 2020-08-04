@@ -15,7 +15,7 @@ import {
   ButtonTxtSecondary,
 } from './styles';
 
-const Login: React.FC = ({ navigation }) => {
+const SignUp: React.FC = ({ navigation }) => {
   return (
     <Container>
       <CoverWrap />
@@ -24,13 +24,13 @@ const Login: React.FC = ({ navigation }) => {
       <CoverImg
         source={{
           uri:
-            'https://images.unsplash.com/photo-1534430480872-3498386e7856?ixlib=rb-1.2.1&w=1000&q=80',
+            'https://gizmodiva.com/wp-content/uploads/2017/10/SCOTT-A-WOODWARD_1SW1943-1170x689.jpg',
         }}
       />
       <CoverWrap />
 
       <Form>
-        <Fieldset>Login</Fieldset>
+        <Fieldset>Criar uma conta</Fieldset>
         <InputField
           placeholder="Nome de usuário ou email"
           keyboardType="email-address"
@@ -44,14 +44,14 @@ const Login: React.FC = ({ navigation }) => {
           secureTextEntry={true}
         />
         <ButtonSubmit>
-          <ButtonText>Entrar</ButtonText>
+          <ButtonText>Criar Conta</ButtonText>
         </ButtonSubmit>
-        <ButtonSecondary onPress={() => navigation.navigate('SignUp')}>
-          <ButtonTxtSecondary>Não tenho uma conta</ButtonTxtSecondary>
+        <ButtonSecondary onPress={() => navigation.navigate('Login')}>
+          <ButtonTxtSecondary>Já tenho uma conta</ButtonTxtSecondary>
         </ButtonSecondary>
       </Form>
     </Container>
   );
 };
 
-export default Login;
+export default SignUp;
