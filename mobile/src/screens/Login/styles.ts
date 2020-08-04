@@ -19,7 +19,7 @@ export const Logo = styled.Image`
 export const CoverImg = styled.Image`
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 50%;
 `;
 
 export const Overlay = styled.View`
@@ -36,7 +36,6 @@ export const Form = styled.View`
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   background: #fff;
-  height: 30px;
   z-index: 999;
   padding: 20px;
 `;
