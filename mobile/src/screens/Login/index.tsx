@@ -43,7 +43,7 @@ const Login: React.FC = ({ navigation }) => {
           autoCorrect={false}
           secureTextEntry={true}
         />
-        <ButtonSubmit>
+        <ButtonSubmit onPress={() => navigation.navigate('Main')}>
           <ButtonText>Entrar</ButtonText>
         </ButtonSubmit>
         <ButtonSecondary onPress={() => navigation.navigate('SignUp')}>
