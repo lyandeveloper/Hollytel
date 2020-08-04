@@ -34,8 +34,15 @@ const Login: React.FC = () => {
         <InputField
           placeholder="Nome de usuário ou email"
           keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
         />
-        <InputField placeholder="Senha" />
+        <InputField
+          placeholder="Senha"
+          autoCapitalize="none"
+          autoCorrect={false}
+          secureTextEntry={true}
+        />
         <ButtonSubmit>
           <ButtonText>Entrar</ButtonText>
         </ButtonSubmit>
