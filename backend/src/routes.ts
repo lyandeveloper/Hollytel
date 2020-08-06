@@ -3,6 +3,7 @@ import UserController from './app/controllers/UserController';
 import HotelController from './app/controllers/HotelController';
 import BookingController from './app/controllers/BookingController';
 import SearchController from './app/controllers/SearchController';
+import FavoriteController from './app/controllers/FavoriteController';
 
 const routes = Router();
 
@@ -21,4 +22,6 @@ routes.get('/mybookings/:userId', BookingController.listBookings);
 routes.put('/mybookings/:bookingId', BookingController.update);
 
 routes.post('/hotels/searching', SearchController.searchHotels);
+
+routes.post('/favorites/:userId/:hotelId', FavoriteController.create);
 export default routes;
