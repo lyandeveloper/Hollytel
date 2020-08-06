@@ -25,4 +25,5 @@ routes.post('/hotels/searching', SearchController.searchHotels);
 
 routes.post('/favorites/:userId/:hotelId', FavoriteController.create);
 routes.get('/favorites/:userId/', FavoriteController.list);
+routes.delete('/favorites/:favoriteId/', FavoriteController.delete);
 export default routes;

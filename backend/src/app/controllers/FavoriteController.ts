@@ -33,6 +33,13 @@ class FavoriteController {
 
     return res.json(favorites);
   }
+
+  async delete(req: Request, res: Response) {
+    const favoriteRepository = getRepository(FavoritesHotels);
+    await favoriteRepository.delete(req.params.favoriteId);
+
+    return res.json({ message: 'Hotel removido dos favoritos!' });
+  }
 }
 
 export default new FavoriteController();
