@@ -37,9 +37,6 @@ export default class Hotel {
   @Column()
   guests!: number;
 
-  @Column()
-  favorite!: boolean;
-
   @CreateDateColumn({ select: false })
   created_at!: Date;
 
