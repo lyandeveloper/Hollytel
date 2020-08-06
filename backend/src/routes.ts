@@ -24,4 +24,5 @@ routes.put('/mybookings/:bookingId', BookingController.update);
 routes.post('/hotels/searching', SearchController.searchHotels);
 
 routes.post('/favorites/:userId/:hotelId', FavoriteController.create);
+routes.get('/favorites/:userId/', FavoriteController.list);
 export default routes;

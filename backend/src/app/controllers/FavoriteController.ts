@@ -14,6 +14,25 @@ class FavoriteController {
 
     return res.json(favorite);
   }
+
+  async list(req: Request, res: Response) {
+    const favoriteRepository = getRepository(FavoritesHotels);
+    const { userId } = req.params;
+
+    const favorites = await favoriteRepository.find({
+      where: {
+        user: userId,
+      },
+      join: {
+        alias: 'favorites_hotels',
+        leftJoinAndSelect: {
+          hotel: 'favorites_hotels.hotel',
+        },
+      },
+    });
+
+    return res.json(favorites);
+  }
 }
 
 export default new FavoriteController();
