@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import authMiddleware from './app/middlewares/auth';
 import UserController from './app/controllers/UserController';
 import HotelController from './app/controllers/HotelController';
 import BookingController from './app/controllers/BookingController';
@@ -9,6 +10,10 @@ import SessionController from './app/controllers/SessionController';
 const routes = Router();
 
 routes.post('/users/create', UserController.create);
+routes.post('/session', SessionController.store);
+
+routes.use(authMiddleware);
+
 routes.get('/users/list', UserController.read);
 routes.put('/users/update/:userId', UserController.update);
 
@@ -27,7 +32,5 @@ routes.post('/hotels/searching', SearchController.searchHotels);
 routes.post('/favorites/:userId/:hotelId', FavoriteController.create);
 routes.get('/favorites/:userId/', FavoriteController.list);
 routes.delete('/favorites/:favoriteId/', FavoriteController.delete);
-
-routes.post('/session', SessionController.store);
 
 export default routes;
