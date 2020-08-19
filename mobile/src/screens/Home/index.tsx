@@ -15,7 +15,7 @@ import {
   ExploreHotels,
 } from './styles';
 
-const Home: React.FC = () => {
+const Home: React.FC = ({ navigation }) => {
   return (
     <Container>
       <Profile>
@@ -64,6 +64,7 @@ const Home: React.FC = () => {
 
       <ExploreHotels>
         <Hotel
+          onPress={() => navigation.navigate('Hotel')}
           img="https://images8.alphacoders.com/812/812133.jpg"
           name="The Rita Suites"
           location="Las Vegas Strip, Las Vegas"

@@ -2,7 +2,6 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {
-  ExploreHotels,
   EHotel,
   EHotelImg,
   FavoriteHotel,
@@ -14,10 +13,15 @@ import {
   EHotelPrice,
   Reviews,
 } from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 const Hotel: React.FC = ({ img, name, location, price }) => {
+  const navigation = useNavigation();
   return (
-    <EHotel>
+    <EHotel
+      onPress={() => {
+        navigation.navigate('Hotel');
+      }}>
       <EHotelImg source={{ uri: `${img}` }} />
       <FavoriteHotel>
         <Ionicons name="heart-outline" color="#fff" size={20} />
