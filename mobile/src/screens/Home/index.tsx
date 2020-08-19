@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import Hotel from '../../components/Hotel';
 import PopularHotel from '../../components/PopularHotel';
 import {
@@ -18,6 +19,7 @@ import {
 const Home: React.FC = ({ navigation }) => {
   return (
     <Container>
+      <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <Profile>
         <ProfileHeader>
           <UserName>Olá, William!</UserName>

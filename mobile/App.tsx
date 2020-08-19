@@ -15,11 +15,7 @@ const MyTheme = {
 const App: React.FC = () => {
   return (
     <>
-      <StatusBar
-        translucent
-        backgroundColor="transparent"
-        barStyle="dark-content"
-      />
+      <StatusBar translucent backgroundColor="#fff" barStyle="dark-content" />
       <NavigationContainer theme={MyTheme}>
         <Routes />
       </NavigationContainer>

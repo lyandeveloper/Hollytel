@@ -1,9 +1,9 @@
 import styled from 'styled-components/native';
 import Swiper from 'react-native-swiper';
 
-export const Container = styled.ScrollView``;
-
-export const ContainerWrapper = styled.ScrollView`
+export const ContainerWrapper = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+})`
   flex: 1;
 `;
 

@@ -15,7 +15,7 @@ import {
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
 
-const Hotel: React.FC = ({ img, name, location, price }) => {
+const Hotel: React.FC = ({ img, name, location, price, favorite = false }) => {
   const navigation = useNavigation();
   return (
     <EHotel
@@ -24,7 +24,11 @@ const Hotel: React.FC = ({ img, name, location, price }) => {
       }}>
       <EHotelImg source={{ uri: `${img}` }} />
       <FavoriteHotel>
-        <Ionicons name="heart-outline" color="#fff" size={20} />
+        {favorite === false ? (
+          <Ionicons name="heart-outline" color="#fff" size={20} />
+        ) : (
+          <Ionicons name="heart" color="#f22e62ff" size={20} />
+        )}
       </FavoriteHotel>
       <EHotelInfoContainer>
         <EHotelInfo>

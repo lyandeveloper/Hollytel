@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { StatusBar } from 'react-native';
 import {
   Container,
   Logo,
@@ -18,6 +18,11 @@ import {
 const Login: React.FC = ({ navigation }) => {
   return (
     <Container>
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="dark-content"
+      />
       <CoverWrap />
       <Overlay />
       <Logo source={require('../../assets/logo.png')} />
