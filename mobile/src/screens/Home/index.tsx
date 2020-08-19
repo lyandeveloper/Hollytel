@@ -15,8 +15,10 @@ import {
   PopularHotels,
   ExploreHotels,
 } from './styles';
+import { useNavigation } from '@react-navigation/native';
 
-const Home: React.FC = ({ navigation }) => {
+const Home: React.FC = () => {
+  const navigation = useNavigation();
   return (
     <Container>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
@@ -27,7 +29,7 @@ const Home: React.FC = ({ navigation }) => {
 
           <SearchInput placeholder="Pesquisar" />
         </ProfileHeader>
-        <ProfileAvatar>
+        <ProfileAvatar onPress={() => navigation.navigate('Profile')}>
           <ProfileImg
             source={{
               uri:

@@ -13,6 +13,7 @@ import Favorites from './screens/Favorites';
 import Deals from './screens/Deals';
 import Bookings from './screens/Bookings';
 import Hotel from './screens/HotelDetails';
+import Profile from './screens/Profile';
 
 const Main: React.FC = () => {
   const Tab = createBottomTabNavigator();
@@ -75,7 +76,6 @@ const Main: React.FC = () => {
 
 const Routes: React.FC = () => {
   const Stack = createStackNavigator();
-
   return (
     <Stack.Navigator
       screenOptions={{
@@ -91,6 +91,15 @@ const Routes: React.FC = () => {
         options={{
           cardStyleInterpolator:
             CardStyleInterpolators.forRevealFromBottomAndroid,
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          headerShown: true,
+          headerTitle: false,
+          headerTransparent: true,
         }}
       />
     </Stack.Navigator>
