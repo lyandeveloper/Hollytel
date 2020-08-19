@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {
@@ -14,7 +14,13 @@ import {
   HotelAddress,
 } from './styles';
 
-const PopularHotel: React.FC = ({ img, name, location, score }) => {
+const PopularHotel: React.FC = ({
+  img,
+  name,
+  location,
+  score,
+  favorite = false,
+}) => {
   return (
     <PHotels>
       <HotelImg
@@ -28,7 +34,11 @@ const PopularHotel: React.FC = ({ img, name, location, score }) => {
           <Ionicons name="star" color="#fff" size={15} />
         </ReviewContainer>
         <Favorite>
-          <Ionicons name="heart-outline" color="#fff" size={20} />
+          {favorite === false ? (
+            <Ionicons name="heart-outline" color="#fff" size={20} />
+          ) : (
+            <Ionicons name="heart" color="#f22e62ff" size={20} />
+          )}
         </Favorite>
       </HotelHeader>
       <HotelInfo>
