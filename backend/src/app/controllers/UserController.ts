@@ -2,9 +2,13 @@ import { Request, Response } from 'express';
 import { getConnection, getRepository } from 'typeorm';
 import User from '../entities/User';
 import HandlePassword from '../helpers/HandlePassword';
+import userValidate from '../validations/user.validate';
 
 class UserController {
   async create(req: Request, res: Response) {
+    userValidate.checkUserEmptyFields(req, res);
+    userValidate.checkUserExist(req, res);
+
     const {
       name,
       email,

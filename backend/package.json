@@ -9,13 +9,15 @@
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
+    "@types/yup": "^0.29.6",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.3.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.25"
+    "typeorm": "^0.2.25",
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
