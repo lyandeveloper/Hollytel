@@ -6,6 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import bcrypt from 'bcryptjs';
+
 @Entity()
 export default class User {
   @PrimaryGeneratedColumn()
@@ -17,7 +19,7 @@ export default class User {
   @Column()
   email!: string;
 
-  @Column({ select: false })
+  @Column()
   password!: string;
 
   @Column({ nullable: true })

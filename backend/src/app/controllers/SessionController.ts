@@ -1,7 +1,9 @@
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import User from '../entities/User';
+import sessionValidate from '../validations/session.validate';
 
 interface IUser {
   id: number;
@@ -12,13 +14,26 @@ interface IUser {
 
 class SessionController {
   async store(req: Request, res: Response) {
-    const { email, password } = req.body;
+    sessionValidate.checkSessionEmptyFields(req, res);
+    sessionValidate.checkUserExist(req, res);
+    sessionValidate.checkPassword(req, res);
+
+    const { email } = req.body;
 
     const userRepository = getRepository(User);
 
-    const user = await userRepository.findOne({
+    const user: any = await userRepository.findOne({
       where: { email },
-      select: ['id', 'name', 'avatar', 'provider'],
+      select: [
+        'id',
+        'name',
+        'email',
+        'password',
+        'born',
+        'address',
+        'avatar',
+        'provider',
+      ],
     });
 
     const { id, name, avatar, provider } = user as IUser;
