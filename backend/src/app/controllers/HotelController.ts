@@ -28,6 +28,7 @@ class HotelController {
   }
 
   async update(req: Request, res: Response) {
+    hotelValidate.checkEmptyFields(req, res);
     const hotelRepository = getRepository(Hotel);
     const hotels = req.body;
     await hotelRepository.update(req.params.hotelId, hotels);
