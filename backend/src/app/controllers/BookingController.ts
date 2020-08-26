@@ -6,6 +6,7 @@ import bookingValidate from '../validations/booking.validate';
 
 class BookingController {
   async create(req: Request, res: Response) {
+    bookingValidate.CheckEmptyFields(req, res);
     bookingValidate.checkDuplicatedBooking(req, res);
 
     const { rooms, guests, check_in, check_out } = req.body;
@@ -48,6 +49,7 @@ class BookingController {
   }
 
   async update(req: Request, res: Response) {
+    bookingValidate.CheckEmptyFields(req, res);
     const bookingRepository = getRepository(Booking);
     const { bookingId } = req.params;
     const { rooms, guests, check_in, check_out } = req.body;
