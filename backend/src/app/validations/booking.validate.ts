@@ -6,8 +6,8 @@ import Booking from '../entities/Booking';
 class BookingValidate {
   async CheckEmptyFields(req: Request, res: Response) {
     const schema = Yup.object().shape({
-      rooms: Yup.string().required(),
-      guests: Yup.string().required(),
+      rooms: Yup.number().required(),
+      guests: Yup.number().required(),
       check_in: Yup.string().required(),
       check_out: Yup.string().required(),
     });
