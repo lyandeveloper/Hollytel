@@ -2,9 +2,12 @@ import { Request, Response } from 'express';
 import { getRepository, getConnection } from 'typeorm';
 import Booking from '../entities/Booking';
 import User from '../entities/User';
+import bookingValidate from '../validations/booking.validate';
 
 class BookingController {
   async create(req: Request, res: Response) {
+    bookingValidate.checkDuplicatedBooking(req, res);
+
     const { rooms, guests, check_in, check_out } = req.body;
     const { userId, hotelId } = req.params;
 
