@@ -16,6 +16,7 @@ class SessionController {
   async store(req: Request, res: Response) {
     sessionValidate.checkSessionEmptyFields(req, res);
     sessionValidate.checkUserExist(req, res);
+    sessionValidate.checkPassword(req, res);
 
     const { email } = req.body;
 
