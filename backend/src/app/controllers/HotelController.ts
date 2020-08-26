@@ -1,9 +1,11 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import Hotel from '../entities/Hotel';
+import hotelValidate from '../validations/hotel.validate';
 
 class HotelController {
   async create(req: Request, res: Response) {
+    hotelValidate.checkEmptyFields(req, res);
     const hotelRepository = getRepository(Hotel);
     const hotel = req.body;
     await hotelRepository.insert(hotel);
