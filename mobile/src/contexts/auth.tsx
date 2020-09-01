@@ -3,9 +3,16 @@ import { createContext } from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import api from '../services/api';
 
+interface IUser {
+  name: string;
+  email: string;
+  password: string;
+  avatar: string;
+}
+
 interface AuthContextData {
   signed: boolean;
-  user: object | null;
+  user: IUser | null;
   loading: boolean;
   signIn(email: string, password: string): Promise<void>;
   signOut(): void;
@@ -14,7 +21,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<object | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,13 +31,12 @@ export const AuthProvider: React.FC = ({ children }) => {
       if (storagedUser && storagedToken) {
         setUser(JSON.parse(storagedUser));
       }
-
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setLoading(false);
     }
 
     loadStorageData();
-  });
+  }, []);
 
   async function signIn(email: string, password: string) {
     setLoading(true);
