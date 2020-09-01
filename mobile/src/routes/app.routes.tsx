@@ -1,21 +1,15 @@
 import React from 'react';
-import {
-  createStackNavigator,
-  CardStyleInterpolators,
-} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import Login from './screens/Login';
-import SignUp from './screens/SignUp';
-import Home from './screens/Home';
-import Favorites from './screens/Favorites';
-import Deals from './screens/Deals';
-import Bookings from './screens/Bookings';
-import Hotel from './screens/HotelDetails';
-import Profile from './screens/Profile';
+import Home from '../screens/Home';
+import Favorites from '../screens/Favorites';
+import Deals from '../screens/Deals';
+import Bookings from '../screens/Bookings';
+import Hotel from '../screens/HotelDetails';
+import Profile from '../screens/Profile';
 
-const Main: React.FC = () => {
+const AppRoutes: React.FC = () => {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
@@ -74,36 +68,4 @@ const Main: React.FC = () => {
   );
 };
 
-const Routes: React.FC = () => {
-  const Stack = createStackNavigator();
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      }}>
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="SignUp" component={SignUp} />
-      <Stack.Screen name="Main" component={Main} />
-      <Stack.Screen
-        name="Hotel"
-        component={Hotel}
-        options={{
-          cardStyleInterpolator:
-            CardStyleInterpolators.forRevealFromBottomAndroid,
-        }}
-      />
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          headerShown: true,
-          headerTitle: false,
-          headerTransparent: true,
-        }}
-      />
-    </Stack.Navigator>
-  );
-};
-
-export default Routes;
+export default AppRoutes;
