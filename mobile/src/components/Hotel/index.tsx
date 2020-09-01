@@ -15,7 +15,21 @@ import {
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
 
-const Hotel: React.FC = ({ img, name, location, price, favorite = false }) => {
+interface IHotel {
+  img: string;
+  name: string;
+  location: string;
+  price: string;
+  favorite?: boolean;
+}
+
+const Hotel: React.FC<IHotel> = ({
+  img,
+  name,
+  location,
+  price,
+  favorite = false,
+}) => {
   const navigation = useNavigation();
   return (
     <EHotel

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {
@@ -14,7 +14,15 @@ import {
   HotelAddress,
 } from './styles';
 
-const PopularHotel: React.FC = ({
+interface PHotel {
+  img: string;
+  name: string;
+  location: string;
+  score: string;
+  favorite?: boolean;
+}
+
+const PopularHotel: React.FC<PHotel> = ({
   img,
   name,
   location,
