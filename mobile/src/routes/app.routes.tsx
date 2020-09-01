@@ -2,14 +2,20 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
+
 import Home from '../screens/Home';
 import Favorites from '../screens/Favorites';
 import Deals from '../screens/Deals';
 import Bookings from '../screens/Bookings';
 import Hotel from '../screens/HotelDetails';
 import Profile from '../screens/Profile';
+import HotelDetails from '../screens/HotelDetails';
 
-const AppRoutes: React.FC = () => {
+function Main() {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
@@ -65,6 +71,22 @@ const AppRoutes: React.FC = () => {
         }}
       />
     </Tab.Navigator>
+  );
+}
+
+const Stack = createStackNavigator();
+
+const AppRoutes: React.FC = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      }}>
+      <Stack.Screen name="Main" component={Main} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Hotel" component={Hotel} />
+    </Stack.Navigator>
   );
 };
 
