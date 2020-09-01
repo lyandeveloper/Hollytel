@@ -37,6 +37,9 @@ export const AuthProvider: React.FC = ({ children }) => {
       password,
     });
     setUser(response.data);
+
+    api.defaults.headers.Authorization = `Baerer ${response.data.token}`;
+
     await AsyncStorage.setItem(
       '@RNAuth:user',
       JSON.stringify(response.data.user),
