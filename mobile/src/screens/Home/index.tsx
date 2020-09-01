@@ -34,7 +34,7 @@ const Home: React.FC = () => {
         <ProfileAvatar onPress={() => navigation.navigate('Profile')}>
           <ProfileImg
             source={{
-              uri: `https://api.adorable.io/avatars/285/${user.name}.png`,
+              uri: `http://192.168.0.112:3333/uploads/${user.avatar}`,
             }}
           />
         </ProfileAvatar>

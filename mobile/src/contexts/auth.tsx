@@ -36,7 +36,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     loadStorageData();
-  }, []);
+  }, [user]);
 
   async function signIn(email: string, password: string) {
     setLoading(true);
@@ -52,7 +52,6 @@ export const AuthProvider: React.FC = ({ children }) => {
       JSON.stringify(response.data.user),
     );
     await AsyncStorage.setItem('@RNAuth:token', response.data.token);
-
     await new Promise((resolve) => setTimeout(resolve, 2000));
   }
 

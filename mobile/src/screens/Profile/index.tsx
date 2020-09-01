@@ -31,7 +31,7 @@ const Profile: React.FC = () => {
         </ProfileContent>
         <ProfileAvatar
           source={{
-            uri: `https://api.adorable.io/avatars/285/${user.name}.png`,
+            uri: `http://192.168.0.112:3333/uploads/${user.avatar}`,
           }}
         />
       </ProfileWrapper>
