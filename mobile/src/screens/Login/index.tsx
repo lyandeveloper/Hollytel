@@ -27,6 +27,7 @@ const Login: React.FC = () => {
 
   async function HandleSign() {
     signIn(email, password);
+    console.log(user);
   }
   return (
     <Container>
