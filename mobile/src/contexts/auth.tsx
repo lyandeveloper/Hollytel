@@ -6,6 +6,7 @@ import api from '../services/api';
 interface AuthContextData {
   signed: boolean;
   user: object | null;
+  loading: boolean;
   signIn(email: string, password: string): Promise<void>;
   signOut(): void;
 }
@@ -14,6 +15,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<object | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadStorageData() {
@@ -23,6 +25,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       if (storagedUser && storagedToken) {
         setUser(JSON.parse(storagedUser));
       }
+      setLoading(false);
     }
 
     loadStorageData();
@@ -47,7 +50,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ signed: Boolean(user), user, signIn, signOut }}>
+      value={{ signed: Boolean(user), user, loading, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );

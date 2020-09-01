@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StatusBar } from 'react-native';
 import Hotel from '../../components/Hotel';
 import PopularHotel from '../../components/PopularHotel';
@@ -16,15 +16,17 @@ import {
   ExploreHotels,
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
+import AuthContext from '../../contexts/auth';
 
 const Home: React.FC = () => {
   const navigation = useNavigation();
+  const { user } = useContext(AuthContext);
   return (
     <Container>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <Profile>
         <ProfileHeader>
-          <UserName>Olá, William!</UserName>
+          <UserName>{`Olá, ${user.name}`}</UserName>
           <ProfileCall>Onde você gostaria de ir?</ProfileCall>
 
           <SearchInput placeholder="Pesquisar" />
