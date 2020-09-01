@@ -21,10 +21,11 @@ export const AuthProvider: React.FC = ({ children }) => {
     async function loadStorageData() {
       const storagedUser = await AsyncStorage.getItem('@RNAuth:user');
       const storagedToken = await AsyncStorage.getItem('@RNAuth:token');
-      await new Promise((resolve) => setTimeout(resolve, 2000));
       if (storagedUser && storagedToken) {
         setUser(JSON.parse(storagedUser));
       }
+
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       setLoading(false);
     }
 
@@ -32,12 +33,12 @@ export const AuthProvider: React.FC = ({ children }) => {
   });
 
   async function signIn(email: string, password: string) {
+    setLoading(true);
     const response = await api.post('/session', {
       email,
       password,
     });
     setUser(response.data);
-
     api.defaults.headers.Authorization = `Baerer ${response.data.token}`;
 
     await AsyncStorage.setItem(
@@ -45,9 +46,12 @@ export const AuthProvider: React.FC = ({ children }) => {
       JSON.stringify(response.data.user),
     );
     await AsyncStorage.setItem('@RNAuth:token', response.data.token);
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
   }
 
-  function signOut() {
+  async function signOut() {
+    await AsyncStorage.clear();
     setUser(null);
   }
 
