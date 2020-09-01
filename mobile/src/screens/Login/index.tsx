@@ -23,8 +23,9 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { signed, signIn } = useContext(AuthContext);
+  const { signed, signIn, user } = useContext(AuthContext);
   console.log(signed);
+  console.log(user);
 
   async function HandleSign() {
     signIn(email, password);
