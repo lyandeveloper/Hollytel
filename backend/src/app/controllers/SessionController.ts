@@ -8,6 +8,7 @@ import sessionValidate from '../validations/session.validate';
 interface IUser {
   id: number;
   name: string;
+  email: string;
   avatar: string;
   provider: boolean;
 }
@@ -42,6 +43,7 @@ class SessionController {
       user: {
         id,
         name,
+        email,
         avatar,
         provider,
       },
