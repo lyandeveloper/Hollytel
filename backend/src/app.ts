@@ -1,5 +1,7 @@
 import 'dotenv/config';
 import express, { Request, Response, ErrorRequestHandler } from 'express';
+import cors from 'cors';
+import path from 'path';
 import 'reflect-metadata';
 import routes from './routes';
 import './database';
@@ -14,8 +16,13 @@ class App {
   }
 
   private middlewares(): void {
+    this.server.use(cors());
     this.server.use(express.json());
     this.server.use(this.ClientErrorHandler);
+    this.server.use(
+      '/uploads',
+      express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))
+    );
   }
 
   private ClientErrorHandler(
