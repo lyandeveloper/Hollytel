@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View } from 'react-native';
 
 import {
@@ -13,9 +13,15 @@ import {
   SettingsName,
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
+import AuthContext from '../../contexts/auth';
 
 const Profile: React.FC = () => {
   const navigation = useNavigation();
+  const { signOut } = useContext(AuthContext);
+
+  function handleSignOut() {
+    signOut();
+  }
   return (
     <Container>
       <ProfileWrapper>
@@ -44,7 +50,7 @@ const Profile: React.FC = () => {
         <Settings>
           <SettingsName>Configurações</SettingsName>
         </Settings>
-        <Settings onPress={() => navigation.navigate('Login')}>
+        <Settings onPress={handleSignOut}>
           <SettingsName>Sair</SettingsName>
         </Settings>
       </SettingsWrapper>
