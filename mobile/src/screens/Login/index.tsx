@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import {
   Container,
   Logo,
@@ -14,8 +15,20 @@ import {
   ButtonSecondary,
   ButtonTxtSecondary,
 } from './styles';
+import api from '../../services/api';
+import AuthContext from '../../contexts/auth';
 
-const Login: React.FC = ({ navigation }) => {
+const Login: React.FC = () => {
+  const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { signed, signIn } = useContext(AuthContext);
+  console.log(signed);
+
+  async function HandleSign() {
+    signIn(email, password);
+  }
   return (
     <Container>
       <StatusBar
@@ -37,18 +50,22 @@ const Login: React.FC = ({ navigation }) => {
       <Form>
         <Fieldset>Login</Fieldset>
         <InputField
-          placeholder="Nome de usuário ou email"
+          placeholder="Email"
           keyboardType="email-address"
           autoCapitalize="none"
           autoCorrect={false}
+          onChangeText={(email) => setEmail(email)}
+          defaultValue={email}
         />
         <InputField
           placeholder="Senha"
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
+          defaultValue={password}
         />
-        <ButtonSubmit onPress={() => navigation.navigate('Main')}>
+        <ButtonSubmit onPress={HandleSign}>
           <ButtonText>Entrar</ButtonText>
         </ButtonSubmit>
         <ButtonSecondary onPress={() => navigation.navigate('SignUp')}>

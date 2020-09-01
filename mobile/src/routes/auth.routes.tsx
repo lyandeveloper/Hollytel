@@ -7,8 +7,9 @@ import {
 import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
 
+const Stack = createStackNavigator();
+
 const AuthRoutes: React.FC = () => {
-  const Stack = createStackNavigator();
   return (
     <Stack.Navigator
       screenOptions={{
