@@ -8,12 +8,11 @@ class UserController {
   async create(req: Request, res: Response) {
     userValidate.checkUserEmptyFields(req, res);
     userValidate.checkUserExist(req, res);
-
+    const { filename } = req.file;
     const {
       name,
       email,
       password,
-      avatar,
       born,
       city,
       address,
@@ -33,7 +32,7 @@ class UserController {
         name,
         email,
         password: passwordHash,
-        avatar,
+        avatar: filename,
         born,
         city,
         address,
@@ -46,9 +45,10 @@ class UserController {
     return res.json({
       name,
       email,
-      passwordHash,
-      avatar,
+      password: passwordHash,
+      avatar: filename,
       born,
+      city,
       address,
       phone,
       country,

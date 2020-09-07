@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import multer from 'multer';
+import uploadConfig from './config/multer';
 import authMiddleware from './app/middlewares/auth';
 import UserController from './app/controllers/UserController';
 import HotelController from './app/controllers/HotelController';
@@ -8,8 +10,9 @@ import FavoriteController from './app/controllers/FavoriteController';
 import SessionController from './app/controllers/SessionController';
 
 const routes = Router();
+const upload = multer(uploadConfig);
 
-routes.post('/users/create', UserController.create);
+routes.post('/users/create', upload.single('avatar'), UserController.create);
 routes.post('/session', SessionController.store);
 
 routes.use(authMiddleware);
