@@ -6,6 +6,7 @@ import {
 
 import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
+import CreateAccount from '../screens/CreateAccount';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ const AuthRoutes: React.FC = () => {
       }}>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="Continue" component={CreateAccount} />
     </Stack.Navigator>
   );
 };

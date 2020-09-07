@@ -43,7 +43,7 @@ const SignUp: React.FC = ({ navigation }) => {
           autoCorrect={false}
           secureTextEntry={true}
         />
-        <ButtonSubmit>
+        <ButtonSubmit onPress={() => navigation.navigate('Continue')}>
           <ButtonText>Criar Conta</ButtonText>
         </ButtonSubmit>
         <ButtonSecondary onPress={() => navigation.navigate('Login')}>

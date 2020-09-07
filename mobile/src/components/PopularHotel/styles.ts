@@ -26,7 +26,7 @@ export const HotelHeader = styled.View`
 export const ReviewContainer = styled.View`
   background: #f22e62ff;
   padding: 2px;
-  width: 45px;
+  width: 50px;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
