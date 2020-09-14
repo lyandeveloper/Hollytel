@@ -24,7 +24,7 @@ const SignUp: React.FC = () => {
   const [password, setPassword] = useState('');
   const { handleAccount } = useContext(accountContext);
 
-  function createAccount() {
+  function shareDataToCreateAccountComponent() {
     handleAccount(email, password);
     navigation.navigate('Continue');
   }
@@ -59,7 +59,7 @@ const SignUp: React.FC = () => {
           onChangeText={(password) => setPassword(password)}
           defaultValue={password}
         />
-        <ButtonSubmit onPress={createAccount}>
+        <ButtonSubmit onPress={shareDataToCreateAccountComponent}>
           <ButtonText>Criar Conta</ButtonText>
         </ButtonSubmit>
         <ButtonSecondary onPress={() => navigation.navigate('Login')}>
