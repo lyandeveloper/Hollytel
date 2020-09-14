@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -15,7 +16,18 @@ import {
   ButtonTxtSecondary,
 } from './styles';
 
-const SignUp: React.FC = ({ navigation }) => {
+import accountContext from '../../contexts/account';
+
+const SignUp: React.FC = () => {
+  const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { handleAccount } = useContext(accountContext);
+
+  function createAccount() {
+    handleAccount(email, password);
+    navigation.navigate('Continue');
+  }
   return (
     <Container>
       <CoverWrap />
@@ -36,14 +48,18 @@ const SignUp: React.FC = ({ navigation }) => {
           keyboardType="email-address"
           autoCapitalize="none"
           autoCorrect={false}
+          onChangeText={(email) => setEmail(email)}
+          defaultValue={email}
         />
         <InputField
           placeholder="Senha"
           autoCapitalize="none"
           autoCorrect={false}
           secureTextEntry={true}
+          onChangeText={(password) => setPassword(password)}
+          defaultValue={password}
         />
-        <ButtonSubmit onPress={() => navigation.navigate('Continue')}>
+        <ButtonSubmit onPress={createAccount}>
           <ButtonText>Criar Conta</ButtonText>
         </ButtonSubmit>
         <ButtonSecondary onPress={() => navigation.navigate('Login')}>

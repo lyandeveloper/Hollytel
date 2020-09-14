@@ -4,6 +4,7 @@ import { StatusBar } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import Routes from './src/routes';
 import { AuthProvider } from './src/contexts/auth';
+import { AccountProvider } from './src/contexts/account';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -19,7 +20,9 @@ const App: React.FC = () => {
       <StatusBar translucent backgroundColor="#fff" barStyle="dark-content" />
       <NavigationContainer theme={MyTheme}>
         <AuthProvider>
-          <Routes />
+          <AccountProvider>
+            <Routes />
+          </AccountProvider>
         </AuthProvider>
       </NavigationContainer>
     </>

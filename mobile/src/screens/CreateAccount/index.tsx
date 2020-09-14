@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Alert } from 'react-native';
-
+import ImagePicker from 'react-native-image-crop-picker';
 import {
   Container,
   Title,
@@ -12,19 +12,31 @@ import {
   ButtonTxt,
 } from './styles';
 
+import accountContext from '../../contexts/account';
+
 const CreateAccount: React.FC = () => {
+  const [avatar, setAvatar] = useState('');
+  const { email, password } = useContext(accountContext);
+
+  console.log({ email, password });
   async function handleSubmit() {
     Alert.alert('Sucesso', 'Conta criada! Faça Login.');
+  }
+
+  async function handleAvatar() {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then((image) => {
+      setAvatar(image.path);
+    });
   }
   return (
     <Container>
       <Title>Complete seu perfil</Title>
-      <AvatarWrapper>
-        <Avatar
-          source={{
-            uri: 'https://api.adorable.io/avatars/285/abott@adorable.png',
-          }}
-        />
+      <AvatarWrapper onPress={handleAvatar}>
+        <Avatar source={{ uri: `${avatar}` }} />
       </AvatarWrapper>
 
       <Form>
