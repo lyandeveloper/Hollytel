@@ -3,3 +3,5 @@ apply from: file("../node_modules/@react-native-community/cli-platform-android/n
 include ':app'
 include ':lottie-react-native'
 project(':lottie-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/lottie-react-native/src/android')
+include ':rn-fetch-blob'                                                                                                  
+project(':rn-fetch-blob').projectDir = new File(rootProject.projectDir, '../node_modules/rn-fetch-blob/android')                  
