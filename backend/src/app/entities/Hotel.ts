@@ -6,7 +6,6 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import Banners from './Banners';
 
 @Entity()
 export default class Hotel {
@@ -16,8 +15,17 @@ export default class Hotel {
   @Column()
   name!: string;
 
-  @ManyToOne((type) => Banners, (banner) => banner.hotel)
-  banner!: [Banners];
+  @Column()
+  banner01!: string;
+
+  @Column()
+  banner02!: string;
+
+  @Column()
+  banner03!: string;
+
+  @Column()
+  banner04!: string;
 
   @Column()
   description!: string;

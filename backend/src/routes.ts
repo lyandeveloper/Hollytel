@@ -20,7 +20,7 @@ routes.use(authMiddleware);
 routes.get('/users/list', UserController.read);
 routes.put('/users/update/:userId', UserController.update);
 
-routes.post('/hotels/register', HotelController.create);
+routes.post('/hotels/register', upload.array('images'), HotelController.create);
 routes.get('/hotels/list', HotelController.read);
 routes.get('/hotels/details/:hotelId', HotelController.index);
 routes.put('/hotels/update/:hotelId', HotelController.update);
