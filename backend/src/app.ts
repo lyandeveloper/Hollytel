@@ -3,7 +3,13 @@ import express, { Request, Response, ErrorRequestHandler } from 'express';
 import cors from 'cors';
 import path from 'path';
 import 'reflect-metadata';
-import routes from './routes';
+import {
+  sessionRoutes,
+  usersRoutes,
+  hotelRoutes,
+  bookingRoutes,
+  favoriteRoutes,
+} from './Routes';
 import './database';
 
 class App {
@@ -43,7 +49,11 @@ class App {
   }
 
   private routes(): void {
-    this.server.use(routes);
+    this.server.use(sessionRoutes);
+    this.server.use(usersRoutes);
+    this.server.use(hotelRoutes);
+    this.server.use(bookingRoutes);
+    this.server.use(favoriteRoutes);
     this.server.use(this.NotFoundError);
   }
 }
