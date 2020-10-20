@@ -3,6 +3,7 @@ import { getConnection, getRepository } from 'typeorm';
 import User from '../entities/User';
 import HandlePassword from '../helpers/HandlePassword';
 import userValidate from '../validations/user.validate';
+import MailProvider from '../../config/mail';
 
 class UserController {
   async create(req: Request, res: Response) {
@@ -41,6 +42,18 @@ class UserController {
         provider,
       })
       .execute();
+
+    const mail = new MailProvider();
+
+    await mail.sendMail({
+      to: {
+        name,
+        email,
+      },
+      subject: 'Bem-vindo ao Hollytel',
+      body:
+        '<p>Olá, estamos felizes por ter se cadastrado em nossa plataforma, encontre hotéis do seu gosto e faça belas viagens.</p>',
+    });
 
     return res.json({
       name,
