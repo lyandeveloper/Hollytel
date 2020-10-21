@@ -44,11 +44,14 @@ interface IHotel {
   guests: string;
   rooms: string;
   banner01: string;
+  banner02: string;
+  banner03: string;
+  banner04: string;
 }
 
 const HotelDetails: React.FC = () => {
   const route = useRoute<any>();
-  const [hotel, setHotel] = useState('');
+  const [hotel, setHotel] = useState<IHotel>(Object);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -93,7 +96,7 @@ const HotelDetails: React.FC = () => {
       <HotelInfo>
         <HotelInfoWrapper>
           <HotelName>{hotel.name}</HotelName>
-          <HotelLocation>Las Vegas Strip, Las Vegas</HotelLocation>
+          <HotelLocation>{`${hotel.address}, ${hotel.city}, ${hotel.country}`}</HotelLocation>
         </HotelInfoWrapper>
         <HotelRate>
           <HotelRateNumber>
