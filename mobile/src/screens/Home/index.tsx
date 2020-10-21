@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import Hotel from '../../components/Hotel';
 import PopularHotel from '../../components/PopularHotel';
@@ -17,10 +17,32 @@ import {
 } from './styles';
 import { useNavigation } from '@react-navigation/native';
 import AuthContext from '../../contexts/auth';
+import api from '../../services/api';
+
+interface IHotel {
+  id: number;
+  name: string;
+  city: string;
+  country: string;
+  address: string;
+  price: string;
+  banner01: string;
+}
 
 const Home: React.FC = () => {
   const navigation = useNavigation();
   const { user } = useContext(AuthContext);
+  const [hotels, setHotels] = useState<IHotel[]>([]);
+
+  useEffect(() => {
+    async function loadHotels() {
+      const response = await api.get('/hotels/list');
+      setHotels(response.data);
+    }
+
+    loadHotels();
+  }, []);
+
   return (
     <Container>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
@@ -68,27 +90,16 @@ const Home: React.FC = () => {
       <Session>Explorar</Session>
 
       <ExploreHotels>
-        <Hotel
-          onPress={() => navigation.navigate('Hotel')}
-          img="https://images8.alphacoders.com/812/812133.jpg"
-          name="The Rita Suites"
-          location="Las Vegas Strip, Las Vegas"
-          price="$700/noite"
-        />
-
-        <Hotel
-          img="https://www.ahstatic.com/photos/b361_ho_00_p_1024x768.jpg"
-          name="Paseo Del Prado"
-          location="Studio City, Los Angeles"
-          price="$610/noite"
-        />
-
-        <Hotel
-          img="https://cdn.wallpaper.com/main/2018/06/owall-hotel-1.jpg"
-          name="Waldorf Astoria"
-          location="São Paulo, Brasil"
-          price="$430/noite"
-        />
+        {hotels.map((hotel) => (
+          <Hotel
+            key={hotel.id}
+            id={hotel.id}
+            img={`http://192.168.0.112:3333/uploads/${hotel.banner01}`}
+            name={hotel.name}
+            location={`${hotel.city}, ${hotel.address}, ${hotel.country}`}
+            price={`$${hotel.price}/noite`}
+          />
+        ))}
       </ExploreHotels>
     </Container>
   );

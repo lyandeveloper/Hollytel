@@ -1,10 +1,10 @@
-import React from 'react';
-import { StatusBar } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { RouteProp, useRoute } from '@react-navigation/native';
+import { StatusBar, View, Text } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
-
 import {
   ContainerWrapper,
   SwiperWrapper,
@@ -31,8 +31,37 @@ import {
   HotelBookingSubmit,
   HotelSubmitTxt,
 } from './styles';
+import api from '../../services/api';
+
+interface IHotel {
+  id: number;
+  name: string;
+  description: string;
+  city: string;
+  country: string;
+  address: string;
+  price: string;
+  guests: string;
+  rooms: string;
+  banner01: string;
+}
 
 const HotelDetails: React.FC = () => {
+  const route = useRoute<any>();
+  const [hotel, setHotel] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadHotelDetails() {
+      const response = await api.get(`/hotels/details/${route.params.id}`);
+      setHotel(response.data);
+    }
+
+    loadHotelDetails();
+  }, []);
+
+  console.log(hotel);
+
   return (
     <ContainerWrapper>
       <StatusBar backgroundColor="#f22e62ff" barStyle="light-content" />
@@ -41,29 +70,29 @@ const HotelDetails: React.FC = () => {
         activeDotColor={'#f22e62ff'}
         paginationStyle={{ bottom: 50 }}>
         <SwiperSlide
-          source={{ uri: 'https://images8.alphacoders.com/812/812133.jpg' }}
-        />
-        <SwiperSlide
           source={{
-            uri:
-              'https://i.pinimg.com/originals/c6/60/24/c66024ea79527d9bbafe79ed171558b9.jpg',
+            uri: `http://192.168.0.112:3333/uploads/${hotel.banner01}`,
           }}
         />
         <SwiperSlide
           source={{
-            uri:
-              'https://img2.chinadaily.com.cn/images/201811/16/5bee5c66a310eff36906b2f7.jpeg',
+            uri: `http://192.168.0.112:3333/uploads/${hotel.banner02}`,
           }}
         />
         <SwiperSlide
           source={{
-            uri: 'https://www.caterlyst.com/Caterlyst/Images/news/N19404.png',
+            uri: `http://192.168.0.112:3333/uploads/${hotel.banner03}`,
+          }}
+        />
+        <SwiperSlide
+          source={{
+            uri: `http://192.168.0.112:3333/uploads/${hotel.banner04}`,
           }}
         />
       </SwiperWrapper>
       <HotelInfo>
         <HotelInfoWrapper>
-          <HotelName>The Rita Suites</HotelName>
+          <HotelName>{hotel.name}</HotelName>
           <HotelLocation>Las Vegas Strip, Las Vegas</HotelLocation>
         </HotelInfoWrapper>
         <HotelRate>
@@ -75,10 +104,7 @@ const HotelDetails: React.FC = () => {
         </HotelRate>
       </HotelInfo>
       <HotelDescription>
-        <HotelDescriptionText>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit aut
-          optio dolorum id deleniti, cumque tempora ipsa eius veniam deserunt
-        </HotelDescriptionText>
+        <HotelDescriptionText>{hotel.description}</HotelDescriptionText>
       </HotelDescription>
 
       <HotelBenefits>
@@ -128,8 +154,8 @@ const HotelDetails: React.FC = () => {
 
       <HotelBooking>
         <HotelBookingInfo>
-          <HotelBookingPrice>R$ 300</HotelBookingPrice>
-          <HotelBookingSpace>3 pessoas, 2 quartos</HotelBookingSpace>
+          <HotelBookingPrice>{`R$${hotel.price}`}</HotelBookingPrice>
+          <HotelBookingSpace>{`${hotel.guests} pessoas, ${hotel.rooms} quartos`}</HotelBookingSpace>
         </HotelBookingInfo>
         <HotelBookingSubmit>
           <HotelSubmitTxt>Agendar</HotelSubmitTxt>

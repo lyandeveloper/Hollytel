@@ -17,24 +17,29 @@ import { useNavigation } from '@react-navigation/native';
 
 interface IHotel {
   img: string;
+  id: number;
   name: string;
-  location: string;
   price: string;
+  location: string;
   favorite?: boolean;
 }
 
 const Hotel: React.FC<IHotel> = ({
   img,
+  id,
   name,
-  location,
   price,
+  location,
   favorite = false,
 }) => {
   const navigation = useNavigation();
+
   return (
     <EHotel
       onPress={() => {
-        navigation.navigate('Hotel');
+        navigation.navigate('Hotel', {
+          id,
+        });
       }}>
       <EHotelImg source={{ uri: `${img}` }} />
       <FavoriteHotel>
