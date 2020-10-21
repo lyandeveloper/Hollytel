@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StatusBar } from 'react-native';
+import { StatusBar, RefreshControl } from 'react-native';
 import Hotel from '../../components/Hotel';
 import PopularHotel from '../../components/PopularHotel';
 import {
@@ -32,6 +32,7 @@ interface IHotel {
 const Home: React.FC = () => {
   const navigation = useNavigation();
   const { user } = useContext(AuthContext);
+  const [refresh, setRefresh] = useState(false);
   const [hotels, setHotels] = useState<IHotel[]>([]);
 
   useEffect(() => {
@@ -43,8 +44,18 @@ const Home: React.FC = () => {
     loadHotels();
   }, []);
 
+  async function onRefresh() {
+    setRefresh(true);
+    const response = await api.get('/hotels/list');
+    setHotels(response.data);
+    setRefresh(false);
+  }
+
   return (
-    <Container>
+    <Container
+      refreshControl={
+        <RefreshControl refreshing={refresh} onRefresh={onRefresh} />
+      }>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <Profile>
         <ProfileHeader>
