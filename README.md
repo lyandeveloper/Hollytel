@@ -2,8 +2,6 @@
   Hollytel
 </h1>
 
-<img src="hollytel.gif">
-
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/lyandeveloper/Hollytel">
   
@@ -23,6 +21,8 @@
     <img alt="Author" src="https://img.shields.io/badge/author-Elian%20Campos-blue">
   </a>
 </p>
+
+<img src="hollytel.gif">
 
 <p align="center">
   <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
