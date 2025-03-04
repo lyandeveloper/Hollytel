@@ -18,7 +18,7 @@
     "@types/axios": "^0.14.0",
     "@types/react-native-vector-icons": "^6.4.5",
     "@types/styled-components": "^5.1.2",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "lottie-react-native": "^3.5.0",
     "react": "16.13.1",
     "react-native": "0.63.0",
